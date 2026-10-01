@@ -71,3 +71,8 @@ Now `\App` will complete to `Qownnotes`.
 
 The date offsets may be a number of days, as shown above, or a number of milliseconds. `1D` is equivalent to `86400000`.
 
+For example, the dutch version of tomorrows full date/time:
+
+```
+morgen "{lc:nl_NL}{+:1D}{dddd} {d} {MMMM} {yyyy} {hh}:{mm}:{ss}"
+```
