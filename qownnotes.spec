@@ -1,0 +1,100 @@
+#
+# Custom version of the spec file for the Qt6 CMake build of QOwnNotes.
+#
+
+Name:           qownnotes
+Version:        26.9.14
+Release:        1.1jv
+Summary:        Note-taking app and todo list manager with Nextcloud integration
+License:        GPL-2.0-only
+URL:            https://www.qownnotes.org/
+Source0:        %{name}-%{version}.tar.xz
+Source1:        %{name}-appicons.zip
+
+BuildRequires:  cmake >= 3.16
+BuildRequires:  gcc-c++
+BuildRequires:  pkgconfig(libsecret-1)
+
+%if 0%{?fedora} || 0%{?rhel}
+BuildRequires:  desktop-file-utils
+BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qtdeclarative-devel
+BuildRequires:  qt6-qtsvg-devel
+BuildRequires:  qt6-qttools-devel
+BuildRequires:  qt6-qtwebsockets-devel
+%else
+BuildRequires:  fdupes
+BuildRequires:  update-desktop-files
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6LinguistTools)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6PrintSupport)
+BuildRequires:  cmake(Qt6Qml)
+BuildRequires:  cmake(Qt6Sql)
+BuildRequires:  cmake(Qt6Svg)
+BuildRequires:  cmake(Qt6WebSockets)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
+%endif
+
+Patch99: qownnotes-edit.patch
+
+%description
+QOwnNotes is a plain-text Markdown note-taking application with
+Nextcloud Notes integration. Notes remain ordinary files and can be
+synchronized with Nextcloud, ownCloud, or other synchronization tools.
+
+%prep
+%autosetup -p1
+
+unzip -o %{SOURCE1}
+
+%build
+%cmake \
+  -DQON_QT6_BUILD=ON \
+  -DCMAKE_BUILD_TYPE=Release
+%cmake_build
+
+%install
+%cmake_install
+
+%if 0%{?suse_version}
+%suse_update_desktop_file -c PBE.QOwnNotes QOwnNotes QOwnNotes QOwnNotes QOwnNotes "Utility;SyncUtility;"
+%fdupes %{buildroot}%{_prefix}
+%else
+desktop-file-validate %{buildroot}%{_datadir}/applications/PBE.QOwnNotes.desktop
+%endif
+
+%files
+%license LICENSE
+%doc README.md CHANGELOG.md shortcuts.md
+%{_bindir}/QOwnNotes
+%{_datadir}/QOwnNotes/
+%{_datadir}/applications/PBE.QOwnNotes.desktop
+%{_datadir}/icons/hicolor/
+
+%changelog
+* Wed Sep 30 2026 Johan Vromans <jvromans@squirrel.nl> - 29.9.14-1.1jv
+Upgrade to upstream.
+
+* Mon Sep 28 2026 Johan Vromans <jvromans@squirrel.nl> - 29.9.13-1.1jv
+Upgrade to upstream.
+
+* Sat Sep 26 2026 Johan Vromans <jvromans@squirrel.nl> - 29.9.12-1.1jv
+Upgrade to upstream.
+
+* Thu Sep 24 2026 Johan Vromans <jvromans@squirrel.nl> - 29.9.10-1.1jv
+Upgrade to upstream.
+
+* Mon Sep 21 2026 Johan Vromans <jvromans@squirrel.nl> - 29.9.9-1.1jv
+Upgrade to upstream.
+
+* Mon Sep 21 2026 Johan Vromans <jvromans@squirrel.nl> - 29.9.8-1.1jv
+Upgrade to upstream.
+
+* Thu Sep 17 2026 Johan Vromans <jvromans@squirrel.nl> - 29.9.6-1.2jv
+Upgrade to upstream.
+
