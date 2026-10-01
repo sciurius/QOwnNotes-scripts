@@ -37,10 +37,11 @@ thisapp  qownnotes "QOwnNotes 26.9"
 ```
 Case matters:
 ```
-app  qownnotes
 App  qownnotes
 ```
-Now `\App` will complete to `Qownnotes`.
+Now `\App` will complete to `Qownnotes`. Yes, you see that good, if
+the command starts with an uppercase letter the result will have its
+first letter uppercased too.
 
 ### Placeholders
 
