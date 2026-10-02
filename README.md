@@ -6,7 +6,6 @@
 ![Language JavaScript](https://img.shields.io/badge/Language-JavaScript-blue)
 ![Language QML](https://img.shields.io/badge/Language-QML-blue)
 
-
 Some of my own.
 
 * [Official QOwnNotes repository](https://github.com/pbek/QOwnNotes)
