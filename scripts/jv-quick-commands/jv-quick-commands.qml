@@ -21,19 +21,7 @@ import "command-parser.js" as CommandParser
 
 Script {
 
-    // Common date formats for today and friends.
-    readonly property string _DDMM:       "{dd}-{MM}";
-    readonly property string _DDMMYYYY:   "{dd}-{MM}-{yyyy}";
-    readonly property string _FULL:       "{yyyy}-{MM}-{dd}T{HH}:{mm}:{ss}";
-    readonly property string _YYYYMMDD:   "{yyyy}-{MM}-{dd}";
-    readonly property string _VERYFULL:   "{dddd} {d} {MMMM} {yyyy} {HH}:{mm}:{ss}";
-
-    // Common date formats for week and friends.
-    readonly property string _WEEKWWYYYY: "w{ww}-{yyyy}";
-    readonly property string _WWYYYY:     "{ww}-{yyyy}";
-
-    property var commands;
-    property string customCommands;
+    // For settings dialog.
     property variant settingsVariables: [
         {
             identifier: "customCommands",
@@ -43,6 +31,21 @@ Script {
             default: ""
         }
     ];
+    property string customCommands;
+
+    // Common date formats for today and friends.
+    readonly property string _DDMM:     "{dd}-{MM}";
+    readonly property string _DDMMYYYY: "{dd}-{MM}-{yyyy}";
+    readonly property string _FULL:     "{yyyy}-{MM}-{dd}T{HH}:{mm}:{ss}";
+    readonly property string _YYYYMMDD: "{yyyy}-{MM}-{dd}";
+    readonly property string _VERYFULL: "{dddd} {d} {MMMM} {yyyy} {HH}:{mm}:{ss}";
+
+    // Common date formats for week and friends.
+    readonly property string _WEEKWWYYYY: "w{ww}-{yyyy}";
+    readonly property string _WWYYYY:     "{ww}-{yyyy}";
+
+    // Command list is static, runtime values are substituted at completion time.
+    property var commands: initCommands();
 
     function autocompletionHook() {
 
@@ -56,7 +59,7 @@ Script {
 
 	// Find the possible candidates.
 	let availableCommands = [];
-	initCommands();
+
 	// script.log("command: " + command);
 	const av = commands[command];
 	if ( av == null || av.length === 0 ) {
@@ -88,7 +91,7 @@ Script {
 
     // Initialze the list of commands.
     function initCommands() {
-	commands = {
+	var commands = {
 	    today:     buildList(0),
             tomorrow:  buildList(1),
 	    yesterday: buildList(-1),
@@ -105,6 +108,8 @@ Script {
 
             commands[customCommand.name] = customCommand.values;
         }
+
+	return commands;
     }
 
     // Build the list of candidates (for initCommands()).
