@@ -1,9 +1,9 @@
 #
-# Custom version of the spec file for the Qt6 CMake build of QOwnNotes.
+# Spec file for the Qt6 CMake build of QOwnNotes
 #
 
 Name:           qownnotes
-Version:        26.9.14
+Version:        26.10.0
 Release:        1.1jv
 Summary:        Note-taking app and todo list manager with Nextcloud integration
 License:        GPL-2.0-only
@@ -77,6 +77,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/PBE.QOwnNotes.desktop
 %{_datadir}/icons/hicolor/
 
 %changelog
+* Fri Oct 02 2026 Johan Vromans <jvromans@squirrel.nl> - 29.10.0-1.1jv
+Upgrade to upstream.
+
 * Wed Sep 30 2026 Johan Vromans <jvromans@squirrel.nl> - 29.9.14-1.1jv
 Upgrade to upstream.
 
