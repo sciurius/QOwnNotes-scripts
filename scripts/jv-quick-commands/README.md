@@ -1,4 +1,4 @@
-# `jv-quick-commands`
+# `quick-commands`
 
 This is an augmented re-implementation of the QOwnNotes `quick-commands` script.
 
