@@ -8,7 +8,7 @@
 
 Some of my own.
 
-	* `jv-quick-commands` is now part of the official QOwnNotes.
+Note: `jv-quick-commands` is now part of the official QOwnNotes.
 
 * [Official QOwnNotes repository](https://github.com/pbek/QOwnNotes)
 * [QOwnNotes script repository](https://github.com/qownnotes/scripts)
